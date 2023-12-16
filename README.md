@@ -1,5 +1,9 @@
 # ti.car
 
+Use Android Auto (Android Car) with Titanium SDK.
+
+For Apple CarPlay visit https://github.com/hansemannn/titanium-carplay/
+
 ## Requirements
 
 * Add this to your tiapp.xml
@@ -28,8 +32,8 @@
 
 ## Methods
 
-* createList()
-* createMessage()
+* createListTemplate()
+* createMessageTemplate()
 * createToast()
 
 ## Events
@@ -43,7 +47,7 @@
 
 ```js
 var car = require("ti.car");
-car.createList({
+car.createListTemplate({
 	title: "ti.car demo",
 	sections: [{
 		title: "List section",
@@ -71,7 +75,7 @@ car.addEventListener("click", function(ev) {
 <img src="assets/message.png"/>
 
 ```js
-car.createMessage({
+car.createMessageTemplate({
 	title: "ti.car demo",
 	text: "Hello from Titanium SDK"
 })

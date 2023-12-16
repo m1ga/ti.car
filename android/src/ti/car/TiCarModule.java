@@ -51,13 +51,13 @@ public class TiCarModule extends KrollModule {
 
     // Methods
     @Kroll.method
-    public void createList(HashMap data) {
+    public void createListTemplate(HashMap data) {
         listData = data;
         listData.put("type", "list");
     }
 
     @Kroll.method
-    public void createMessage(KrollDict data) {
+    public void createMessageTemplate(KrollDict data) {
         listData = data;
         listData.put("type", "message");
     }

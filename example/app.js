@@ -2,7 +2,7 @@ const win = Titanium.UI.createWindow()
 win.open();
 
 const car = require("ti.car");
-car.createList({
+car.createListTemplate({
 	title: "ti.car demo",
 	sections: [{
 		title: "List section",
