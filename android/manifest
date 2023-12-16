@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 4
+architectures: arm64-v8a armeabi-v7a x86 x86_64
+description: ti.car
+author: Your Name
+license: Specify your license
+copyright: Copyright (c) 2023 by Your Company
+
+# these should not be edited
+name: ti.car
+moduleid: ti.car
+guid: feecd75f-f5a5-4eca-9132-90def7a15d5e
+platform: android
+minsdk: 12.2.1.GA
