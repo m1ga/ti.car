@@ -12,15 +12,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import androidx.car.app.CarToast;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.kroll.common.Log;
 import org.appcelerator.kroll.common.TiConfig;
 import org.appcelerator.titanium.TiApplication;
+import org.appcelerator.titanium.util.TiConvert;
 
 import java.util.HashMap;
 
@@ -53,7 +52,7 @@ public class TiCarModule extends KrollModule {
     @Kroll.method
     public void createListTemplate(HashMap data) {
         listData = data;
-        listData.put("type", "list");
+        listData.put("type", TiConvert.toString(data.get("type"), "list"));
     }
 
     @Kroll.method
@@ -71,7 +70,6 @@ public class TiCarModule extends KrollModule {
         @Override
         public void onReceive(Context context, Intent intent) {
             KrollDict kd = new KrollDict();
-            Log.i(LCAT, "LOCAL RECEIVER");
             String action = intent.getAction();
             if (action.equals("click")) {
                 kd.put("index", intent.getIntExtra("index", -1));
