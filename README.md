@@ -32,9 +32,14 @@ For Apple CarPlay visit https://github.com/hansemannn/titanium-carplay/
 
 ## Methods
 
-* createListTemplate()
-* createMessageTemplate()
-* createToast()
+* <b>createListTemplate({})</b>
+  * title (string)
+  * type (string): "list" or "grid",
+  * sections (array): Array of objects with title, items:[{text},{text}]
+* <b>createMessageTemplate({})</b>
+  * title (string)
+  * text (string)
+* <b>createToast(String)</b> - will display a toast message on the car display
 
 ## Events
 
