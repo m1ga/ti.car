@@ -15,4 +15,4 @@ name: ti.car
 moduleid: ti.car
 guid: feecd75f-f5a5-4eca-9132-90def7a15d5e
 platform: android
-minsdk: 12.2.1.GA
+minsdk: 12.5.1.GA
