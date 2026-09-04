@@ -7,17 +7,9 @@
  */
 package ti.car;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import org.appcelerator.kroll.KrollDict;
 import org.appcelerator.kroll.KrollModule;
 import org.appcelerator.kroll.annotations.Kroll;
-import org.appcelerator.kroll.common.TiConfig;
 import org.appcelerator.titanium.TiApplication;
 import org.appcelerator.titanium.util.TiConvert;
 
@@ -27,25 +19,30 @@ import java.util.HashMap;
 @Kroll.module(name = "TiCar", id = "ti.car")
 public class TiCarModule extends KrollModule {
 
-    // Standard Debugging variables
-    private static final String LCAT = "TiCarModule";
-    private static final boolean DBG = TiConfig.LOGD;
+    private static TiCarModule instance;
     public static HashMap listData;
-    private final IntentFilter mIntentFilter;
 
     // You can define constants with @Kroll.constant, for example:
     // @Kroll.constant public static final String EXTERNAL_NAME = value;
 
     public TiCarModule() {
         super();
-        mIntentFilter = new IntentFilter();
-        mIntentFilter.addAction("click");
-        LocalBroadcastReceiver lbr = new LocalBroadcastReceiver();
-        LocalBroadcastManager.getInstance(TiApplication.getAppRootOrCurrentActivity()).registerReceiver(lbr, mIntentFilter);
+        instance = this;
     }
 
     @Kroll.onAppCreate
     public static void onAppCreate(TiApplication app) {
+    }
+
+    public static void fireClickEvent(int sectionIndex, int itemIndex, String text) {
+        TiCarModule module = instance;
+        if (module != null) {
+            KrollDict kd = new KrollDict();
+            kd.put("index", itemIndex);
+            kd.put("sectionIndex", sectionIndex);
+            kd.put("text", text);
+            module.fireEvent("click", kd);
+        }
     }
 
     // Methods
@@ -53,28 +50,18 @@ public class TiCarModule extends KrollModule {
     public void createListTemplate(HashMap data) {
         listData = data;
         listData.put("type", TiConvert.toString(data.get("type"), "list"));
+        TiCarScreen.updateScreen();
     }
 
     @Kroll.method
     public void createMessageTemplate(KrollDict data) {
         listData = data;
         listData.put("type", "message");
+        TiCarScreen.updateScreen();
     }
 
     @Kroll.method
     public void createToast(String message) {
         TiCarScreen.createToast(message);
-    }
-
-    public class LocalBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            KrollDict kd = new KrollDict();
-            String action = intent.getAction();
-            if (action.equals("click")) {
-                kd.put("index", intent.getIntExtra("index", -1));
-                fireEvent("click", kd);
-            }
-        }
     }
 }

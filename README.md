@@ -44,6 +44,9 @@ For Apple CarPlay visit https://github.com/hansemannn/titanium-carplay/
 ## Events
 
 * click
+  * index (number): item index inside its section
+  * sectionIndex (number): index of the section the item belongs to
+  * text (string): title of the clicked item
 
 ## Example
 

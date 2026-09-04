@@ -13,7 +13,7 @@
 					</intent-filter>
 				</service>
 			</application>
-			<uses-feature android:name="android.hardware.type.automotive" android:required="true"/>
+			<uses-feature android:name="android.hardware.type.automotive" android:required="false"/>
 
 		</manifest>
 	</android>
